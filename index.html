@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Curriculum Vitae</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin: auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .actions {
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+        
+        .pdf-container {
+            width: 100%;
+            height: 80vh;
+            min-height: 500px;
+            background: #f0f0f0;
+            position: relative;
+        }
+        
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .fallback {
+            display: none;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
+        
+        .fallback.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .pdf-container {
+                height: 70vh;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Curriculum Vitae</h1>
+            <p>Bienvenido a mi perfil profesional</p>
+        </div>
+        
+        <div class="actions">
+            <a href="CV.pdf" download class="btn">⬇️ Descargar CV</a>
+        </div>
+        
+        <div class="pdf-container">
+            <iframe src="CV.pdf#view=FitH" type="application/pdf" id="pdf-viewer"></iframe>
+            <div class="fallback" id="fallback">
+                <h2>📱 Vista previa no disponible</h2>
+                <p style="margin: 20px 0;">Tu navegador no puede mostrar el PDF directamente.</p>
+                <a href="CV.pdf" class="btn">Ver/Descargar CV</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Detectar si el navegador puede mostrar PDFs
+        const iframe = document.getElementById('pdf-viewer');
+        const fallback = document.getElementById('fallback');
+        
+        iframe.onerror = function() {
+            iframe.style.display = 'none';
+            fallback.classList.add('active');
+        };
+        
+        // Para dispositivos móviles que no soportan iframes de PDF
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            const testPDF = new XMLHttpRequest();
+            testPDF.open('HEAD', 'CV.pdf', true);
+            testPDF.onreadystatechange = function() {
+                if (testPDF.readyState === 4) {
+                    if (testPDF.status !== 200) {
+                        iframe.style.display = 'none';
+                        fallback.classList.add('active');
+                    }
+                }
+            };
+            testPDF.send();
+        }
+    </script>
+</body>
+</html>
