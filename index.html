@@ -125,15 +125,15 @@
         </div>
         
         <div class="actions">
-            <a href="CV.pdf" download class="btn">⬇️ Descargar CV</a>
+            <a href="CV_Christopher_Velasco.pdf" download class="btn">⬇️ Descargar CV</a>
         </div>
         
         <div class="pdf-container">
-            <iframe src="CV.pdf#view=Fit&toolbar=1&navpanes=0&scrollbar=1" type="application/pdf" id="pdf-viewer"></iframe>
+            <iframe src="CV_Christopher_Velasco.pdf#view=Fit&toolbar=1&navpanes=0&scrollbar=1" type="application/pdf" id="pdf-viewer"></iframe>
             <div class="fallback" id="fallback">
                 <h2>📱 Vista previa no disponible</h2>
                 <p style="margin: 20px 0;">Tu navegador no puede mostrar el PDF directamente.</p>
-                <a href="CV.pdf" class="btn">Ver/Descargar CV</a>
+                <a href="CV_Christopher_Velasco.pdf" class="btn">Ver/Descargar CV</a>
             </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
         // Para dispositivos móviles que no soportan iframes de PDF
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             const testPDF = new XMLHttpRequest();
-            testPDF.open('HEAD', 'CV.pdf', true);
+            testPDF.open('HEAD', 'CV_Christopher_Velasco.pdf', true);
             testPDF.onreadystatechange = function() {
                 if (testPDF.readyState === 4) {
                     if (testPDF.status !== 200) {
@@ -165,3 +165,4 @@
     </script>
 </body>
 </html>
+
